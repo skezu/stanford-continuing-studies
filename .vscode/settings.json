@@ -1,0 +1,6 @@
+{
+    "markdown.marp.themes": [
+        "css\\styles.css",
+        "css\\template.css"
+    ]
+}
