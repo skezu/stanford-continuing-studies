@@ -172,8 +172,7 @@ n8n connects to a wide range of services:
 <!-- Slide 13 -->
 # Quick Check: Your Automation Experience  
 - **Question 1:** Have you used any automation tools before?  
-- **Question 2:** What’s the most repetitive task in your business?  
-- *(Take a moment to reflect or discuss with a neighbor.)*
+- **Question 2:** What’s the most repetitive task in your business? 
 
 ---
 
@@ -192,7 +191,7 @@ n8n connects to a wide range of services:
 
 <!-- Slide 15 -->
 # Real-World Use Case: AI Chatbot with RAG Data Source  
-**Scenario:**  
+<!-- **Scenario:**  
 - A business aims to offer instant, context-rich customer support via an AI chatbot.  
 
 **Challenge:**  
@@ -205,7 +204,7 @@ n8n connects to a wide range of services:
   - **AI Processing:** Synthesize and refine the response using integrated AI nodes.  
 
 **Outcome:**  
-- Delivers accurate, real-time responses that enhance customer engagement and reduce support costs.
+- Delivers accurate, real-time responses that enhance customer engagement and reduce support costs. -->
 
 ---
 
