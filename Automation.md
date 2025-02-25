@@ -57,14 +57,24 @@ paginate: true
 
 ---
 
+![Automation workflow in a map](./res/1.jpg)
+
+---
+
+![Automation workflow on n8n](./res/2.jpg)
+
+---
+
 <!-- Slide 6 -->
 # Zapier, Make, and n8n: A Comparison
 
-| **Feature**         | **Zapier**                                   | **Make**                                      | **n8n**                                                        |
+<!-- | **Feature**         | **Zapier**                                   | **Make**                                      | **n8n**                                                        |
 |---------------------|----------------------------------------------|-----------------------------------------------|----------------------------------------------------------------|
 | **Ease of Use**     | Very user-friendly, simple setup             | Visually powerful but with a learning curve    | Intuitive and flexible; low-code but may need technical insight  |
 | **Cost & Scalability** | Can become expensive at high volumes           | More affordable for complex workflows         | Open source & self-hostable; cost-effective for scaling          |
-| **Customization**   | Limited beyond pre-built integrations         | Good visual tools with some custom code options | Highly customizable with custom code and advanced AI integrations|
+| **Customization**   | Limited beyond pre-built integrations         | Good visual tools with some custom code options | Highly customizable with custom code and advanced AI integrations| -->
+
+![Comparison of Zapier, Make, and n8n](res\Comparison-Zapier-Make-n8n.jpg)
 
 ---
 
@@ -136,6 +146,10 @@ paginate: true
   - **Low-Code AI Integration:** Add advanced AI capabilities without writing heavy code.  
   - **Enhanced Decision Support:** Automatically analyze data and provide actionable insights.  
   - **Increased Efficiency:** Streamlines tasks like data summarization and customer interactions, saving time and reducing manual effort.
+
+---
+
+![Understanding the AI Agents Node](./res/Understanding-AI-Agents-1.webp)
 
 ---
 
