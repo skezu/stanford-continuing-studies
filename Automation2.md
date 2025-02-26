@@ -50,7 +50,19 @@ paginate: true
 - **Benefits:**  
   - **Efficiency:** Tasks are done faster  
   - **Accuracy:** Reduced human error  
-  - **Scalability:** Easily expand operations  
+  - **Scalability:** Easily expand operations
+  
+
+---
+
+<!-- _backgroundImage : url('bkg/Template-Background-stanford/Header2.png') -->
+
+##### What Is AI Automation then? 
+
+
+---
+
+# AI Automation
 - **AI Automation:** Infuses smart decision-making and analysis into routine processes
 
 ---
