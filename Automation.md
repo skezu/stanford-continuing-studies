@@ -117,7 +117,7 @@ paginate: true
   - Visual editor lets you see and adjust the entire process without writing extensive code.
 
 ---
-![Explanation of node types on n8n](res\nodes-in-n8n.jpg)
+![Explanation of node types on n8n](./res/nodes-in-n8n.jpg)
 ---
 
 <!-- Slide 10 -->
