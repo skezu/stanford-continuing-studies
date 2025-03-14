@@ -1,0 +1,295 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5000/predict",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "new_telco_customers"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -580,
+        700
+      ],
+      "id": "f3bb6c87-8f68-48bd-83ec-fb2fa1129c7f",
+      "name": "Churn Prediction1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        720,
+        820
+      ],
+      "id": "a99d06de-4e6c-4629-b0e2-8a0772336611",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "new_telco_customers",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -840,
+        700
+      ],
+      "id": "feeeca20-c407-489b-a10e-9763eb822f31",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1140,
+        700
+      ],
+      "id": "c52ea3c6-6d71-4619-8b96-dba24581845f",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Create an email draft to be sent to a client with a high churn prediction :\nGender: {{ $json.data[0].gender }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        520,
+        600
+      ],
+      "id": "602ffb20-c76f-431e-8b43-d2014c2ef9b7",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "lhUApbFvY9EZBhdB",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "draft",
+        "subject": "We Value Your Experience",
+        "message": "={{ $json.message.content }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        980,
+        600
+      ],
+      "id": "65995bfd-de34-462a-ad6b-ffcd1f96983f",
+      "name": "Gmail",
+      "webhookId": "be7ed83f-557e-4e1b-87c4-00ee99f2173d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CO8lpy1fjUASAkCV",
+          "name": "Gmail loqmannbenhaddya.pro"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1JoG1TBnjif7GmJjlDgflJ8O9KT2-hydpCtaz6eJH6jw/edit?gid=165459937#gid=165459937",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "new_telco_customers",
+          "mode": "name"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1000,
+        700
+      ],
+      "id": "b609c170-6d78-4e77-8504-aabb3c22ea57",
+      "name": "Read the data table",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "VQwKdpMN0WCxRWfI",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  item.json.data = JSON.parse(item.json.data);\n}\n\nreturn $input.all();\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -360,
+        700
+      ],
+      "id": "f6eef1df-2504-4003-9164-0f0a3b283c58",
+      "name": "Parse the output"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1ac3ce22-a688-4975-b435-5c11388b2bf2",
+              "leftValue": "={{ $json.data[2].churn_prediction }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -180,
+        700
+      ],
+      "id": "7282f5fd-ff92-4dc3-a9e8-3131bf591172",
+      "name": "If churn"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Churn Prediction1": {
+      "main": [
+        [
+          {
+            "node": "Parse the output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Churn Prediction1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Read the data table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read the data table": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse the output": {
+      "main": [
+        [
+          {
+            "node": "If churn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If churn": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "abfc3d9f-946e-4dab-ad2a-3bdc96f6bb33",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "62c593923a02dfa0215341d8612c18130806321ca448654f4e5e6d961cdaf452"
+  },
+  "id": "P5SMbgmw8evofOZ9",
+  "tags": []
+}
